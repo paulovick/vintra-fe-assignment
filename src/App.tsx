@@ -7,7 +7,7 @@ import LoginPage from './pages/LoginPage/LoginPage'
 import SensorsPage from './pages/SensorsPage/SensorsPage'
 import { createMuiTheme, CssBaseline, MuiThemeProvider } from '@material-ui/core'
 
-const theme = createMuiTheme({
+export const theme = createMuiTheme({
   palette: {
     background: {
       default: "rgba(0, 0, 0, 0.04)"
