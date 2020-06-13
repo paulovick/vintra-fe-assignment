@@ -58,6 +58,9 @@ const CreateSensorModal = ({ isOpen, handleClose, handleSuccess }: CreateSensorM
       isActive
     }).then(() => {
       setIsCreating(false)
+      setDescription('')
+      setSamplingPeriod(5)
+      setIsActive(true)
       handleSuccess()
     }).catch(error => {
       setIsCreating(false)
@@ -104,7 +107,7 @@ const CreateSensorModal = ({ isOpen, handleClose, handleSuccess }: CreateSensorM
           />
           <div className={classes.isActiveContainer}>
             <Typography className={classes.isActiveLabel}>Active</Typography>
-            <Switch value={isActive} onClick={() => setIsActive(!isActive)} />
+            <Switch value={isActive ? 'on' : 'off'} onClick={() => setIsActive(!isActive)} />
           </div>
           <Button disabled={isCreating} className={classes.saveButton} variant="contained" color="primary" onClick={onCreateClick}>Create sensor</Button>
         </form>

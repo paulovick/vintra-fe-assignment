@@ -8,6 +8,9 @@ import { Sensor } from '../../models/Sensor'
 import sensorsService from '../../services/sensorsService'
 import LoadingIndicator from '../../lib/components/LoadingIndicator/LoadingIndicator'
 import ErrorIndicator from '../../lib/components/ErrorIndicator/ErrorIndicator'
+import { RootState } from '../../store'
+import { connect, ConnectedProps } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 const useStyle = makeStyles({
   listRoot: {
@@ -20,7 +23,15 @@ const useStyle = makeStyles({
   }
 }, { name: 'SensorsPage' })
 
-const SensorsPage = () => {
+const mapState = (state: RootState) => ({
+  auth: state.auth
+})
+
+const connector = connect(mapState)
+
+type SensorsPageProps = ConnectedProps<typeof connector>
+
+const SensorsPage = ({ auth }: SensorsPageProps) => {
   const [ isModalOpen, setIsModalOpen ] = useState<boolean>(false)
   const [ sensors, setSensors ] = useState<Sensor[]>([
     { id: 0, description: 'asdnjasbdjb sdijb aijd ashijbd hiasb dhb ashkdkasb kdh', samplingPeriod: 10, isActive: true },
@@ -52,6 +63,10 @@ const SensorsPage = () => {
     setIsModalOpen(true)
   }
 
+  if (!auth.authToken) {
+    return <Redirect to="/login" />
+  }
+
   return (
     <Container>
       <CreateSensorModal
@@ -76,4 +91,4 @@ const SensorsPage = () => {
   )
 }
 
-export default SensorsPage
+export default connector(SensorsPage)
