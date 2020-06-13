@@ -25,7 +25,7 @@ const http = {
   },
   post: <TResponse>(url: string, data?: any, shouldAuthorize: boolean = true): Promise<TResponse> => {
     return new Promise<TResponse>((resolve, reject) => {
-      axios.post<TResponse>(url, data,{ headers: getHeaders() })
+      axios.post<TResponse>(url, data,{ headers: getHeaders(shouldAuthorize) })
         .then(response => {
           if (response.status === 200 || response.status === 201) {
             resolve(response.data)
