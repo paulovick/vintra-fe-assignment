@@ -1,5 +1,6 @@
 import React from 'react'
-import { BrowserRouter, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
+import 'fontsource-roboto'
 
 import LoginPage from './pages/LoginPage/LoginPage'
 import SensorsPage from './pages/SensorsPage/SensorsPage'
@@ -7,9 +8,11 @@ import SensorsPage from './pages/SensorsPage/SensorsPage'
 const App = () => {
   return (
     <BrowserRouter>
-      <Route path="/login" component={LoginPage} />
-      <Route path="/sensors" component={SensorsPage} />
-      <Route path="/" component={() => <Redirect to="/sensors" />} />
+      <Switch>
+        <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/sensors" component={SensorsPage} />
+        <Redirect to="/sensors" />
+      </Switch>
     </BrowserRouter>
   )
 }
