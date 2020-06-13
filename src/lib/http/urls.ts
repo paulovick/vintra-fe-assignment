@@ -6,7 +6,8 @@ const urls = {
     login: () => `${baseUrl}/auth/login`
   },
   sensors: {
-    all: () => `${baseUrl}/api/v1/sensors/`
+    all: () => `${baseUrl}/api/v1/sensors/`,
+    create: () => `${baseUrl}/api/v1/sensors/`
   }
 }
 
